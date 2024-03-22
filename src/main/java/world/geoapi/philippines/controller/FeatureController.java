@@ -1,5 +1,6 @@
 package world.geoapi.philippines.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class FeatureController {
     FeatureService featureService;
 
     @GetMapping("/findByCoord")
-    public ResponseEntity<?> findByCoordinate(@ModelAttribute LocationReqDto req) {
+    public ResponseEntity<?> findByCoordinate(@Valid @ModelAttribute LocationReqDto req) {
         var dto = featureService.findByCoordinate(req.getLat(), req.getLng());
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }

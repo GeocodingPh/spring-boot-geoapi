@@ -13,12 +13,7 @@ public class FeatureService {
     FeatureRepository featureRepo;
 
     public LocationResDto findByCoordinate(@RequestParam Float lat, @RequestParam Float lng) {
-        try {
-            return LocationResDto.fromFeatures(featureRepo.findByCoordinate(lat, lng));
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
+        return LocationResDto.fromFeatures(featureRepo.findByCoordinate(lat, lng));
     }
 
 }
