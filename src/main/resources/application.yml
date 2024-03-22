@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: philippines
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: geoJson
+      username: superAdmin
+      password: Password486!
+      authentication-database: admin
