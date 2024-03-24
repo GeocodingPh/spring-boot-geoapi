@@ -3,9 +3,9 @@ spring:
     name: philippines
   data:
     mongodb:
-      host: ${mongo.host}
-      port: ${mongo.port}
-      database: ${mongo.database}
-      username: ${mongo.username}
-      password: ${mongo.password}
+      host: ${MONGO_HOST}
+      port: ${MONGO_PORT}
+      database: ${MONGO_DATABASE}
+      username: ${MONGO_USERNAME}
+      password: ${MONGO_PASSWORD}
       authentication-database: admin
