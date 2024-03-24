@@ -3,9 +3,9 @@ spring:
     name: philippines
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: geoJson
-      username: superAdmin
-      password: Password486!
+      host: ${mongo.host}
+      port: ${mongo.port}
+      database: ${mongo.database}
+      username: ${mongo.username}
+      password: ${mongo.password}
       authentication-database: admin
