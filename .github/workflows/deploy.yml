@@ -14,37 +14,35 @@ permissions:
   contents: read
 
 jobs:
-  PR:
+  Deploy:
     if: github.event.pull_request.merged == true
-    build:
-      runs-on: ubuntu-latest #ubuntu-20.04
-      steps:
-        # Checkout branch
-        - name: Checkout
-          uses: actions/checkout@v4
-        # Set up JDK 17 for build
-        - name: Set up JDK 17
-          uses: actions/setup-java@v4
-          with:
-            java-version: '17'
-            distribution: 'temurin'
-        # Gradle Caching
-        - name: Gradle Caching
-          uses: actions/cache@4
-          with:
-            path: |
-              ~/.gradle/caches
-              ~/.gradle/wrapper
-            key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-            restore-keys: |
-              ${{ runner.os }}-gradle-
-        # Build jar
-        - name: Build with Gradle
-          run: ./gradlew bootJar
-        # Build and Publish Docker Image
-        - name: Build and Publish Docker Image
-          run: |
-            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-            docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }} .
-            docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}
-
+    runs-on: ubuntu-latest #ubuntu-20.04
+    steps:
+      # Checkout branch
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Set up JDK 17 for build
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      # Gradle Caching
+      - name: Gradle Caching
+        uses: actions/cache@4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      # Build jar
+      - name: Build with Gradle
+        run: ./gradlew bootJar
+      # Build and Publish Docker Image
+      - name: Build and Publish Docker Image
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }} .
+          docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}
