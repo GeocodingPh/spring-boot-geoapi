@@ -66,4 +66,8 @@ jobs:
             -e MONGO_USERNAME=${{ secrets.MONGO_USERNAME }} \
             -e MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }} \
             -e MONGO_DATABASE=${{ secrets.MONGO_DATABASE }} \
+            -e SENTRY_ORG=${{ secrets.SENTRY_ORG }} \
+            -e SENTRY_PROJECT_NAME=${{ secrets.SENTRY_PROJECT_NAME }} \
+            -e SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }} \
+            -e SENTRY_DNS=${{ secrets.SENTRY_DNS }} \
             -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}

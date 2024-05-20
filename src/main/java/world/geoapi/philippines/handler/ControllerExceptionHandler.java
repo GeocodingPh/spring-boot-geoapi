@@ -1,5 +1,6 @@
 package world.geoapi.philippines.handler;
 
+import io.sentry.Sentry;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,19 +15,19 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public HttpEntity<?> exception(Exception e) {
-        // TODO log
+        Sentry.captureException(e);
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(NoResourceFoundException.class)
     public HttpEntity<?> noResourceFoundException(NoResourceFoundException e) {
-        // TODO log
+        Sentry.captureException(e);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND.getReasonPhrase(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public HttpEntity<?> methodArgumentNotValidException(MethodArgumentNotValidException e) {
-        // TODO log
+        Sentry.captureException(e);
         return new ResponseEntity<>(BindErrorUtils.resolveAndJoin(e.getFieldErrors()), HttpStatus.BAD_REQUEST);
     }
 

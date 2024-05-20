@@ -2,11 +2,15 @@
 
 ## Set up Repository secrets for CI/CD
 - Spring Boot (***These are the necessary environment variables for running standalone without CI/CD.***)
-  - MONGO_HOST
-  - MONGO_PORT
-  - MONGO_DATABASE
-  - MONGO_USERNAME
-  - MONGO_PASSWORD
+  - MONGO_HOST (application.yml)
+  - MONGO_PORT (application.yml)
+  - MONGO_DATABASE (application.yml)
+  - MONGO_USERNAME (application.yml)
+  - MONGO_PASSWORD (application.yml)
+  - SENTRY_ORG (build.gradle)
+  - SENTRY_PROJECT_NAME (build.gradle)
+  - SENTRY_AUTH_TOKEN (build.gradle)
+  - SENTRY_DNS (application.yml)
 - Docker Hub
   - DOCKER_USERNAME
   - DOCKER_REPOSITORY
